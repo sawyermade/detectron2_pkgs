@@ -1,3 +1,6 @@
+# Detectron 2 GitHub
+FAIR holding it down hard asking Google, say what? https://github.com/facebookresearch/detectron2
+
 # Detectron2 HTTP server
 ```bash
 # Create conda env and activate it
