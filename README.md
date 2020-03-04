@@ -13,10 +13,10 @@ pip install 'git+https://github.com/cocodataset/cocoapi.git#subdirectory=PythonA
 pip install requests jsonpickle pyrealsense2 flask
 
 # Clone repo and submodules
-git clone --recurse-submodules https://github.com/sawyermade/detectron2_http.git
+git clone --recurse-submodules https://github.com/sawyermade/detectron2_pkgs.git
 
 # Install detectron2 module for conda env
-cd detectron2_http/detectron2
+cd detectron2_pkgs/detectron2
 pip install -e .
 ```
 
