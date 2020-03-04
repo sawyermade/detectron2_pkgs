@@ -1,5 +1,5 @@
 # Detectron2 GitHub
-FAIR holding it down hard asking Google, say what? Meet PyTorch and Detectron2 https://github.com/facebookresearch/detectron2
+FAIR Detectron2 https://github.com/facebookresearch/detectron2
 
 ## Detectron2 HTTP Server GPU
 ```bash
