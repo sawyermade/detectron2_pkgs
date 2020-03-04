@@ -7,7 +7,7 @@ FAIR Detectron2 https://github.com/facebookresearch/detectron2
 conda create -n detectron2 python=3.6 -y
 conda activate detectron2
 conda install -c pytorch pytorch torchvision -y
-conda install cython -y
+conda install cython imageio -y
 conda install -c menpo opencv -y
 pip install 'git+https://github.com/cocodataset/cocoapi.git#subdirectory=PythonAPI'
 pip install requests jsonpickle pyrealsense2 flask
