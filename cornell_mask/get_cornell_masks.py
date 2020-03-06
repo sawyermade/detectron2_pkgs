@@ -124,11 +124,14 @@ if __name__ == "__main__":
                     path, len(predictions["instances"]), time.time() - start_time
                 )
             )
+            # print(predictions)
 
             if len(predictions['instances']) < 1:
                 continue
 
             if args.output:
+                if not os.path.exists(args.output):
+                    os.makedirs(args.output)
                 if os.path.isdir(args.output):
                     assert os.path.isdir(args.output), args.output
                     out_filename = os.path.join(args.output, os.path.basename(path))
