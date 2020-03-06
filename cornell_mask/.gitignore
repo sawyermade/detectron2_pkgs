@@ -1,1 +1,3 @@
 outputs
+outputs_masks*
+__pycache__

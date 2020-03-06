@@ -39,9 +39,10 @@ def get_parser():
         help="path to config file",
     )
     parser.add_argument("--webcam", action="store_true", help="Take inputs from webcam.")
+    parser.add_argument("--cornell-single", action="store_true", help="Cornell Single Directory")
     parser.add_argument("--video-input", help="Path to video file.")
     parser.add_argument("--input", nargs="+", help="A list of space separated input images")
-    parser.add_argument("--input_dir", help="Path to image directory file.")
+    parser.add_argument("--input-dir", help="Path to image directory file.")
     parser.add_argument(
         "--output",
         help="A file or directory to save output visualizations. "
@@ -107,7 +108,12 @@ if __name__ == "__main__":
         # if len(args.input) == 1:
         #     args.input = glob.glob(os.path.expanduser(args.input[0]))
         #     assert args.input, "The input path(s) was not found"
-        file_paths = glob.glob(args.input_dir, 'pcd*r.png')
+        if args.cornell_single:
+            file_paths = glob.glob(os.path.join(args.input_dir, 'pcd*r.png'))
+
+        else:
+            file_paths = glob.glob(os.path.join(args.input_dir, '*', 'pcd*r.png'))
+
         for path in tqdm.tqdm(file_paths, disable=not args.output):
             # use PIL, to be consistent with evaluation
             img = read_image(path, format="BGR")
@@ -118,6 +124,9 @@ if __name__ == "__main__":
                     path, len(predictions["instances"]), time.time() - start_time
                 )
             )
+
+            if len(predictions['instances']) < 1:
+                continue
 
             if args.output:
                 if os.path.isdir(args.output):
