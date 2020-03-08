@@ -87,13 +87,7 @@ def main():
 
 		# Shows img
 		visImg = retList[0]
-		bbList = retList[1]
-		# maskList = retList[-1]
-		# visImg[:,:,0] *= maskList[0]
-		# visImg[:,:,1] *= maskList[0]
-		# visImg[:,:,2] *= maskList[0]
 		visImg = cv2.resize(visImg, (1200, 900))
-
 		cv2.imshow('Inference', visImg)
 		k = cv2.waitKey(1)
 		if k == 27:

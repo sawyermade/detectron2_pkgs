@@ -4,6 +4,7 @@ from detectron2.config import get_cfg
 from detectron2.data.detection_utils import read_image
 from detectron2.utils.logger import setup_logger
 from predictor import VisualizationDemo
+from detectron2.data import MetadataCatalog
 
 def setup_cfg(args):
 	# load config from file and command-line arguments
@@ -67,6 +68,7 @@ DOMAIN = args.ip
 PORT = args.port
 app = flask.Flask(__name__)
 model = None
+metadata = None
 
 # Cuda device setup
 os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
@@ -104,7 +106,9 @@ def upload_file():
 	labelList = pred.pred_classes.numpy()
 	maskList = pred.pred_masks.numpy()
 	scoreList = pred.scores.numpy()
-	# print(f'pred:\n{bbList}')
+	class_names = metadata.get("thing_classes", None)
+	labelList = [class_names[i] for i in labelList]
+	# print(f'label list:\b{labelList}')
 
 	# # Encodes to png files
 	# pngList = [cv2.imencode('.png', m)[1] for m in maskList]
@@ -119,7 +123,7 @@ def upload_file():
 
 def main():
 	# Globals
-	global model
+	global model, metadata
 
 	# Setup logger
 	mp.set_start_method("spawn", force=True)
@@ -130,6 +134,10 @@ def main():
 	# Setup config and predictor
 	cfg = setup_cfg(args)
 	model = VisualizationDemo(cfg)
+	metadata = MetadataCatalog.get(
+        cfg.DATASETS.TEST[0] if len(cfg.DATASETS.TEST) else "__unused"
+
+    )
 
 	# Run http app
 	app.run(port=PORT, host=DOMAIN, debug=False)
