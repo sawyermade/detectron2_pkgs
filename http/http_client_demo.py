@@ -43,6 +43,13 @@ def get_parser():
 		action="store_true", 
 		help="Take inputs from webcam."
 	)
+	parser.add_argument(
+		"--vis-only", 
+		'-vo',
+		dest='vis_only',
+		action="store_true", 
+		help="Visualize Return Only"
+	)
 	return parser.parse_args()
 
 # Uploads to Detectron
@@ -90,9 +97,8 @@ def main():
 		config.enable_stream(rs.stream.color, width, height, rs.format.bgr8, 30)
 		profile = pipeline.start(config)
 
-	# k = 0
-	flag = True
-	while flag:
+	print('Hold Ctrl+C to stop...')
+	while True:
 		# Get frames
 		if args.webcam:
 			ret, frame = cap.read()
@@ -102,7 +108,7 @@ def main():
 		
 		# Sends to detectron
 		# returns [vis.png, bbList, labelList, scoreList, maskList]
-		retList = upload(url, frame)
+		retList = upload(url, frame, args.vis_only)
 		if not retList:
 			continue
 
@@ -111,9 +117,10 @@ def main():
 		visImg = cv2.resize(visImg, (1200, 900))
 		cv2.imshow('Inference', visImg)
 		k = cv2.waitKey(1)
-		if k == 27:
-			cv2.destroyAllWindows()
-			flag = False
+		# k = cv2.waitKey(1)
+		# if k == 27:
+		# 	cv2.destroyAllWindows()
+		# 	break
 
 if __name__ == '__main__':
 	main()
