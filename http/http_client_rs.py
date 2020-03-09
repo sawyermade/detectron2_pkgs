@@ -88,6 +88,7 @@ def main():
 		# Shows img
 		visImg = retList[0]
 		visImg = cv2.resize(visImg, (1200, 900))
+		visImg = cv2.cvtColor(visImg, cv2.COLOR_RGB2BGR)
 		cv2.imshow('Inference', visImg)
 		k = cv2.waitKey(1)
 		if k == 27:
