@@ -99,6 +99,8 @@ def upload_file():
 	predictions = model(im)
 	image = cv2.cvtColor(im, cv2.COLOR_BGR2RGB)
 	visualizer = Visualizer(image, metadata, instance_mode=instance_mode)
+	vis_output = None
+	pred = None
 
 	if "panoptic_seg" in predictions:
 		pred_pan, pan_info = predictions["panoptic_seg"]
@@ -117,25 +119,37 @@ def upload_file():
 			pred = predictions["instances"].to(cpu_device)
 			vis_output = visualizer.draw_instance_predictions(predictions=pred)
 
-	# print(pred)
-	bbList = pred.pred_boxes.tensor.numpy()
-	labelList = pred.pred_classes.numpy()
-	maskList = pred.pred_masks.numpy()
-	scoreList = pred.scores.numpy()
-	class_names = metadata.get("thing_classes", None)
-	labelList = [class_names[i] for i in labelList]
-	# print(f'label list:\b{labelList}')
+	# If any detections of instances
+	if pred and vis_output:
+		
+		# Pulls all information
+		bbList = pred.pred_boxes.tensor.numpy()
+		labelList = pred.pred_classes.numpy()
+		maskList = pred.pred_masks.numpy()
+		scoreList = pred.scores.numpy()
+		class_names = metadata.get("thing_classes", None)
+		labelList = [class_names[i] for i in labelList]
 
-	# # Encodes to png files
-	# pngList = [cv2.imencode('.png', m)[1] for m in maskList]
-	vis_img = cv2.cvtColor(vis_output.get_image(), cv2.COLOR_RGB2BGR)
-	retList = [cv2.imencode('.png', vis_img)[1], bbList, labelList, scoreList, maskList]
+		# Converts visualized image to BGR
+		vis_img = cv2.cvtColor(vis_output.get_image(), cv2.COLOR_RGB2BGR)
 
-	# # Encodes to jsonpickle and sends json
-	retList_encoded = jsonpickle.encode(retList)
+		# Converts maskList
+		maskOnes = np.ones(maskList[0].shape)
+		maskList = [maskOnes * m for m in maskList]
+		pngList = [cv2.imencode('.png', m)[1] for m in maskList]
 
-	# returns [vis.png, bbList, labelList, scoreList, maskList]
-	return flask.Response(response=retList_encoded, status=200, mimetype='application/json')
+		# Creates return list and encode masks for size
+		retList = [cv2.imencode('.png', vis_img)[1], bbList, labelList, scoreList, pngList]
+
+		# Encodes to jsonpickle and sends json
+		retList_encoded = jsonpickle.encode(retList)
+
+		# returns [vis.png, bbList, labelList, scoreList, maskList]
+		return flask.Response(response=retList_encoded, status=200, mimetype='application/json')
+
+	# No detections found
+	else:
+		return flask.Response(response=None)
 
 
 def main():
