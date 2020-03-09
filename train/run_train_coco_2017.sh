@@ -6,4 +6,4 @@ python3 train_coco_2017.py \
 	-tdir ~/DATASETS/object/COCO/2017/train2017/ \
 	-vgt ~/DATASETS/object/COCO/2017/annotations/instances_val2017.json \
 	-vdir ~/DATASETS/object/COCO/2017/val2017/ \
-	-bs 5
+	-bs 4
