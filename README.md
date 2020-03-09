@@ -1,7 +1,8 @@
 # Detectron2 GitHub
 FAIR Detectron2 https://github.com/facebookresearch/detectron2
 
-## Detectron2 Conda Environment Setup GPU
+## Server Setup and Install
+### Detectron2 Conda Environment Setup GPU
 ```bash
 # May not work if driver and cuda version arent the same as mine: Driver 440 and CUDA 10.2, try from scratch below
 git clone --recurse-submodules https://github.com/sawyermade/detectron2_pkgs.git
@@ -11,7 +12,7 @@ conda activate detectron2
 pip install -e detectron2
 ```
 
-## Detectron2 HTTP Server GPU From Scratch
+### Detectron2 HTTP Server GPU From Scratch
 ```bash
 # Create conda env and activate it
 conda create -n detectron2 python=3.6 -y
@@ -31,7 +32,7 @@ cd detectron2
 pip install -e .
 ```
 
-## Detectron2 HTTP Server CPU
+### Detectron2 HTTP Server CPU
 ```bash
 conda create -n detectron2cpu python=3.6 -y
 conda activate detectron2cpu
@@ -44,4 +45,15 @@ pip install 'git+https://github.com/cocodataset/cocoapi.git#subdirectory=PythonA
 pip install requests jsonpickle pyrealsense2 flask
 ```
 
+## Client Demo
+```bash
+# Enter directory and activate environment
+cd detectron2_pkgs/http
+conda activate detectron2
 
+# Run with realsense
+./run_client_rs.sh
+
+# Run with OpenCV webcam capture
+./run_client_wc.sh
+```

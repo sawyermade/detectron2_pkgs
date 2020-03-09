@@ -14,24 +14,28 @@ def get_parser():
 	parser = argparse.ArgumentParser(description="Detectron2 demo for builtin models")
 	parser.add_argument(
 		"--config-file",
+		'-cf',
 		default="../configs/quick_schedules/mask_rcnn_R_50_FPN_inference_acc_test.yaml",
 		metavar="FILE",
 		help="path to config file",
 	)
 	parser.add_argument(
 		"--confidence-threshold",
+		'-ct',
 		type=float,
 		default=0.5,
 		help="Minimum score for instance predictions to be shown",
 	)
 	parser.add_argument(
 		"--opts",
+		'-op',
 		help="Modify config options using the command-line 'KEY VALUE' pairs",
 		default=[],
 		nargs=argparse.REMAINDER,
 	)
 	parser.add_argument(
 		'--cuda',
+		'-cu',
 		dest='cuda',
 		help='Enter cuda card number to use as integer',
 		default='0',
@@ -39,6 +43,7 @@ def get_parser():
 	)
 	parser.add_argument(
 		'--ip',
+		'-ip',
 		dest='ip',
 		help='Server IP',
 		default='0.0.0.0',
@@ -46,6 +51,7 @@ def get_parser():
 	)
 	parser.add_argument(
 		'--port',
+		'-p',
 		dest='port',
 		help='Server Port',
 		default='665',

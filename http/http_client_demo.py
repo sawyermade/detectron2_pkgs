@@ -6,6 +6,7 @@ def get_parser():
 	parser = argparse.ArgumentParser(description="Detectron2 demo for builtin models")
 	parser.add_argument(
 		'--ip',
+		'-ip',
 		dest='ip',
 		help='Server IP',
 		default='127.0.0.1',
@@ -13,6 +14,7 @@ def get_parser():
 	)
 	parser.add_argument(
 		'--port',
+		'-p',
 		dest='port',
 		help='Server Port',
 		default='665',
@@ -20,6 +22,7 @@ def get_parser():
 	)
 	parser.add_argument(
 		'--width',
+		'-wt',
 		dest='width',
 		help='Image Capture Width',
 		default=640,
@@ -27,6 +30,7 @@ def get_parser():
 	)
 	parser.add_argument(
 		'--height',
+		'-ht',
 		dest='height',
 		help='Image Capture height',
 		default=480,
@@ -34,11 +38,11 @@ def get_parser():
 	)
 	parser.add_argument(
 		"--webcam", 
+		'-wc',
 		dest='webcam',
 		action="store_true", 
 		help="Take inputs from webcam."
 	)
-
 	return parser.parse_args()
 
 # Uploads to Detectron
