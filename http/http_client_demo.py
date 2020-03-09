@@ -77,7 +77,9 @@ def main():
 	url = f'http://{args.ip}:{args.port}'
 
 	# Starts captures if not webcam
-	if not args.webcam:
+	if args.webcam:
+		cap = cv2.VideoCapture(0)
+	else :
 		width, height = args.width, args.height
 		pipeline = rs.pipeline()
 		config = rs.config()
@@ -88,7 +90,7 @@ def main():
 	while True:
 		# Get frames
 		if args.webcam:
-			frame = cv2.VideoCapture(0)
+			ret, frame = cap.read()
 		else:
 			frames = pipeline.wait_for_frames()
 			frame = np.asanyarray(frames.get_color_frame().get_data())
