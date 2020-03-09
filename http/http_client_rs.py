@@ -32,6 +32,12 @@ def get_parser():
 		default=480,
 		type=int
 	)
+	parser.add_argument(
+		"--webcam", 
+		dest='webcam',
+		action="store_true", 
+		help="Take inputs from webcam."
+	)
 
 	return parser.parse_args()
 
@@ -66,18 +72,22 @@ def main():
 	args = get_parser()
 	url = f'http://{args.ip}:{args.port}'
 
-	# Starts captures
-	width, height = args.width, args.height
-	pipeline = rs.pipeline()
-	config = rs.config()
-	config.enable_stream(rs.stream.depth, width, height, rs.format.z16, 30)
-	config.enable_stream(rs.stream.color, width, height, rs.format.bgr8, 30)
-	profile = pipeline.start(config)
+	# Starts captures if not webcam
+	if not args.webcam:
+		width, height = args.width, args.height
+		pipeline = rs.pipeline()
+		config = rs.config()
+		config.enable_stream(rs.stream.depth, width, height, rs.format.z16, 30)
+		config.enable_stream(rs.stream.color, width, height, rs.format.bgr8, 30)
+		profile = pipeline.start(config)
 
 	while True:
 		# Get frames
-		frames = pipeline.wait_for_frames()
-		frame = np.asanyarray(frames.get_color_frame().get_data())
+		if args.webcam:
+			frame = cv2.VideoCapture(0)
+		else:
+			frames = pipeline.wait_for_frames()
+			frame = np.asanyarray(frames.get_color_frame().get_data())
 		
 		# Sends to detectron
 		# returns [vis.png, bbList, labelList, scoreList, maskList]
@@ -88,7 +98,6 @@ def main():
 		# Shows img
 		visImg = retList[0]
 		visImg = cv2.resize(visImg, (1200, 900))
-		visImg = cv2.cvtColor(visImg, cv2.COLOR_RGB2BGR)
 		cv2.imshow('Inference', visImg)
 		k = cv2.waitKey(1)
 		if k == 27:
