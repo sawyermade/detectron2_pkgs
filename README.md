@@ -24,10 +24,7 @@ pip install requests jsonpickle pyrealsense2 flask
 
 # Clone repo and submodules
 git clone --recurse-submodules https://github.com/sawyermade/detectron2_pkgs.git
-
-# Create conda env
-# conda env create -f conda_env.yaml
-# conda activate detectron2
+cd detectron2_pkgs
 
 # Install detectron2 module for conda env
 cd detectron2

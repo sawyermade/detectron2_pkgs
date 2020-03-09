@@ -90,7 +90,7 @@ def upload_file():
 	# 	)
 	predictions, visualized_output = model.run_on_image(im)
 	# return flask.Response(response=None)
-	print(predictions)
+	# print(predictions)
 	if "panoptic_seg" in predictions:
 		pred_pan, pan_info = predictions["panoptic_seg"]
 		print(pan_info)
