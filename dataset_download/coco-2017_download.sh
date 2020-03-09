@@ -2,6 +2,10 @@
 
 # Download directory
 outdir="$1"
+if [ ! -d $outdir ]
+then 
+	makedir -p $outdir
+fi
 
 # Download Images
 wget http://images.cocodataset.org/zips/train2017.zip -P $outdir -N
@@ -15,3 +19,10 @@ wget http://images.cocodataset.org/annotations/stuff_annotations_trainval2017.zi
 wget http://images.cocodataset.org/annotations/panoptic_annotations_trainval2017.zip -P $outdir -N
 wget http://images.cocodataset.org/annotations/image_info_test2017.zip -P $outdir -N
 wget http://images.cocodataset.org/annotations/image_info_unlabeled2017.zip -P $outdir -N
+
+# Copy extract python script to download directory
+FILES=$outdir/*.zip
+for f in $FILES
+do
+	unzip $f -d $outdir
+done
