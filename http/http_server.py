@@ -90,13 +90,15 @@ def upload_file():
 	# 	)
 	predictions, visualized_output = model.run_on_image(im)
 	# return flask.Response(response=None)
-
+	print(predictions)
 	if "panoptic_seg" in predictions:
-		pred, segments_info = predictions["panoptic_seg"].to(torch.device('cpu'))
+		pred_pan, pan_info = predictions["panoptic_seg"]
+		print(pan_info)
 	
 	else:
 		if "sem_seg" in predictions:
-			pred = predictions['sem_seg'].to(torch.device('cpu'))
+			pred_seg = predictions['sem_seg'].to(torch.device('cpu'))
+			print(pred_seg)
 		
 		if "instances" in predictions:
 			pred = predictions["instances"].to(torch.device('cpu'))
