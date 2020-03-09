@@ -46,14 +46,15 @@ def get_parser():
 	return parser.parse_args()
 
 # Uploads to Detectron
-def upload(url, frame):
+def upload(url, frame, vis_only=True):
 	# Prep headers for http req
 	content_type = 'application/json'
 	headers = {'content_type': content_type}
 
 	# jsonpickle the numpy frame
 	_, frame_png = cv2.imencode('.png', frame)
-	frame_json = jsonpickle.encode(frame_png)
+	upload_list = [frame_png, vis_only]
+	frame_json = jsonpickle.encode(upload_list)
 
 	# Post and get response
 	try:
@@ -62,7 +63,9 @@ def upload(url, frame):
 			# Decode response and return it
 			retList = jsonpickle.decode(response.text)
 			retList[0] = cv2.imdecode(retList[0], cv2.IMREAD_COLOR)
-			retList[-1] = [cv2.imdecode(m, cv2.IMREAD_GRAYSCALE) for m in retList[-1]]
+
+			if not vis_only:
+				retList[-1] = [cv2.imdecode(m, cv2.IMREAD_GRAYSCALE) for m in retList[-1]]
 			
 			# returns [vis.png, bbList, labelList, scoreList, maskList]
 			return retList
@@ -87,7 +90,9 @@ def main():
 		config.enable_stream(rs.stream.color, width, height, rs.format.bgr8, 30)
 		profile = pipeline.start(config)
 
-	while True:
+	# k = 0
+	flag = True
+	while flag:
 		# Get frames
 		if args.webcam:
 			ret, frame = cap.read()
@@ -108,7 +113,7 @@ def main():
 		k = cv2.waitKey(1)
 		if k == 27:
 			cv2.destroyAllWindows()
-			break 
+			flag = False
 
 if __name__ == '__main__':
 	main()

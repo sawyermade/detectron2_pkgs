@@ -91,8 +91,9 @@ os.environ["CUDA_VISIBLE_DEVICES"]=args.cuda
 def upload_file():
 	# Get request and unzip/decode
 	r = flask.request
-	im = jsonpickle.decode(r.data)
-	im = cv2.imdecode(im, cv2.IMREAD_COLOR)
+	upload_list = jsonpickle.decode(r.data)
+	vis_only = upload_list[1]
+	im = cv2.imdecode(upload_list[0], cv2.IMREAD_COLOR)
 
 	# Run inference
 	# predictions, vis_output = model.run_on_image(im)
@@ -139,7 +140,10 @@ def upload_file():
 		pngList = [cv2.imencode('.png', m)[1] for m in maskList]
 
 		# Creates return list and encode masks for size
-		retList = [cv2.imencode('.png', vis_img)[1], bbList, labelList, scoreList, pngList]
+		if vis_only:
+			retList = [cv2.imencode('.png', vis_img)[1]]
+		else:
+			retList = [cv2.imencode('.png', vis_img)[1], bbList, labelList, scoreList, pngList]
 
 		# Encodes to jsonpickle and sends json
 		retList_encoded = jsonpickle.encode(retList)
@@ -150,7 +154,6 @@ def upload_file():
 	# No detections found
 	else:
 		return flask.Response(response=None)
-
 
 def main():
 	# Globals
