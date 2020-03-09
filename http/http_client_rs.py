@@ -82,6 +82,7 @@ def main():
 		# Sends to detectron
 		# returns [vis.png, bbList, labelList, scoreList, maskList]
 		retList = upload(url, frame)
+		print(retList)
 		if not retList:
 			continue
 
