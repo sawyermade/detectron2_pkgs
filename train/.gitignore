@@ -1,3 +1,4 @@
 datasets/*
 !datasets/README.md
 mask_rcnn_R_101_FPN_3x
+run_test.sh
