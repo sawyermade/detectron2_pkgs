@@ -2,19 +2,6 @@
 FAIR Detectron2 https://github.com/facebookresearch/detectron2
 
 ## Server Setup and Install
-### Detectron2 Conda Environment Setup GPU
-```bash
-# May not work if driver and cuda version arent the same as mine: Driver 440.44 and CUDA 10.2, try from scratch below
-git clone --recurse-submodules https://github.com/sawyermade/detectron2_pkgs.git
-cd detectron2_pkgs
-conda env create -f conda_env.yaml
-conda activate detectron2
-cd detectron2
-rm -rf build
-pip install -e .
-pip install git+https://github.com/lvis-dataset/lvis-api.git
-```
-
 ### Detectron2 HTTP Server GPU From Scratch
 ```bash
 # Create conda env and activate it
@@ -24,6 +11,9 @@ conda install -c pytorch pytorch torchvision -y
 conda install cython imageio -y
 conda install -c menpo opencv3 -y
 pip install 'git+https://github.com/cocodataset/cocoapi.git#subdirectory=PythonAPI'
+pip install 'git+https://github.com/cocodataset/panopticapi.git'
+pip install 'git+https://github.com/lvis-dataset/lvis-api.git'
+pip install 'git+https://github.com/mcordts/cityscapesScripts.git'
 pip install requests jsonpickle pyrealsense2 flask
 
 # Clone repo and submodules
@@ -47,6 +37,19 @@ conda install cython -y
 conda install -c menpo opencv -y
 pip install 'git+https://github.com/cocodataset/cocoapi.git#subdirectory=PythonAPI'
 pip install requests jsonpickle pyrealsense2 flask
+```
+
+### Detectron2 Conda Environment Setup GPU, doesnt always work
+```bash
+# May not work if driver and cuda version arent the same as mine: Driver 440.44 and CUDA 10.2, try from scratch below
+git clone --recurse-submodules https://github.com/sawyermade/detectron2_pkgs.git
+cd detectron2_pkgs
+conda env create -f conda_env.yaml
+conda activate detectron2
+cd detectron2
+rm -rf build
+pip install -e .
+pip install git+https://github.com/lvis-dataset/lvis-api.git
 ```
 
 ## Client Demo

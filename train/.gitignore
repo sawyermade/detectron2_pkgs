@@ -1,5 +1,6 @@
 datasets/*
 !datasets/README.md
+!datasets/prepare_panoptic_fpn.py
 mask_rcnn*
 run_test.sh
 lvis/*
