@@ -123,6 +123,14 @@ def argument_parser():
     	type=int,
     	default=16
     )
+    parser.add_argument(
+    	'--learning-rate',
+    	'-lr',
+    	dest='learning_rate',
+    	help='Learning Rate',
+    	type=float,
+    	default=0.0001
+    )
     return parser.parse_args()
 
 # Random sample check
@@ -147,6 +155,7 @@ def setup(args):
 	cfg.merge_from_file(args.config_file)
 	cfg.merge_from_list(args.opts)
 	cfg.SOLVER.IMS_PER_BATCH = args.batch_size
+	cfg.SOLVER.BASE_LR = args.learning_rate
 	cfg.freeze()
 	print(f'cfg.DATASETS: {cfg.DATASETS}')
 	default_setup(cfg, args)

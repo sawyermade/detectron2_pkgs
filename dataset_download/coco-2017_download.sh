@@ -24,5 +24,5 @@ wget http://images.cocodataset.org/annotations/image_info_unlabeled2017.zip -P $
 FILES=$outdir/*.zip
 for f in $FILES
 do
-	unzip $f -d $outdir
+	unzip $f -d $outdir && rm -f $f
 done
