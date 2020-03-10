@@ -157,7 +157,7 @@ def setup(args):
 	cfg.SOLVER.IMS_PER_BATCH = args.batch_size
 	cfg.SOLVER.BASE_LR = args.learning_rate
 	cfg.freeze()
-	print(f'cfg.DATASETS: {cfg.DATASETS}')
+	# print(f'cfg.DATASETS: {cfg.DATASETS}')
 	default_setup(cfg, args)
 	return cfg
 
