@@ -272,8 +272,8 @@ if __name__ == '__main__':
 
 	# Set CUDA Card
 	# Cuda device setup
-	# os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
-	# os.environ["CUDA_VISIBLE_DEVICES"]=args.cuda
+	os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
+	os.environ["CUDA_VISIBLE_DEVICES"]=args.cuda
 
 	# Register coco train datasets
 	# register_coco_instances(
