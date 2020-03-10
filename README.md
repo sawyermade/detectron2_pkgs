@@ -9,7 +9,8 @@ git clone --recurse-submodules https://github.com/sawyermade/detectron2_pkgs.git
 cd detectron2_pkgs
 conda env create -f conda_env.yaml
 conda activate detectron2
-pip install -e detectron2
+cd detectron2
+pip install -e .
 ```
 
 ### Detectron2 HTTP Server GPU From Scratch
