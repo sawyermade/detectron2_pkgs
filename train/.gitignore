@@ -5,3 +5,4 @@ mask_rcnn*
 run_test.sh
 lvis/*
 !lvis/download.sh
+panoptic*
