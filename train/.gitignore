@@ -1,4 +1,6 @@
 datasets/*
 !datasets/README.md
-mask_rcnn_R_101_FPN_3x
+mask_rcnn*
 run_test.sh
+lvis/*
+!lvis/download.sh
