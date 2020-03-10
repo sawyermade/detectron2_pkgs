@@ -26,3 +26,4 @@ for f in $FILES
 do
 	unzip $f -d $outdir && rm -f $f
 done
+rm -rf $outdir/__MACOSX

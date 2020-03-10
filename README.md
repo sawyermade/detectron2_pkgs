@@ -4,7 +4,7 @@ FAIR Detectron2 https://github.com/facebookresearch/detectron2
 ## Server Setup and Install
 ### Detectron2 Conda Environment Setup GPU
 ```bash
-# May not work if driver and cuda version arent the same as mine: Driver 440 and CUDA 10.2, try from scratch below
+# May not work if driver and cuda version arent the same as mine: Driver 440.44 and CUDA 10.2, try from scratch below
 git clone --recurse-submodules https://github.com/sawyermade/detectron2_pkgs.git
 cd detectron2_pkgs
 conda env create -f conda_env.yaml
