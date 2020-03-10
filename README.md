@@ -10,6 +10,7 @@ cd detectron2_pkgs
 conda env create -f conda_env.yaml
 conda activate detectron2
 cd detectron2
+rm -rf build
 pip install -e .
 pip install git+https://github.com/lvis-dataset/lvis-api.git
 ```
@@ -31,6 +32,7 @@ cd detectron2_pkgs
 
 # Install detectron2 module for conda env
 cd detectron2
+rm -rf build
 pip install -e .
 ```
 
