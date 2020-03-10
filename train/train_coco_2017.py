@@ -154,8 +154,8 @@ def setup(args):
 	cfg.OUTPUT_DIR = f'./{out_dir}'
 	cfg.merge_from_file(args.config_file)
 	cfg.merge_from_list(args.opts)
-	cfg.SOLVER.IMS_PER_BATCH = args.batch_size
-	cfg.SOLVER.BASE_LR = args.learning_rate
+	# cfg.SOLVER.IMS_PER_BATCH = args.batch_size
+	# cfg.SOLVER.BASE_LR = args.learning_rate
 	cfg.freeze()
 	# print(f'cfg.DATASETS: {cfg.DATASETS}')
 	default_setup(cfg, args)
