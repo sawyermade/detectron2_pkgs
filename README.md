@@ -1,6 +1,8 @@
 # Detectron2 GitHub
 FAIR Detectron2 https://github.com/facebookresearch/detectron2
 
+Models are saved in \~/.torch/fvcore_cache/detectron2
+
 ## Server Setup and Install
 ### Detectron2 HTTP Server GPU From Scratch
 ```bash
