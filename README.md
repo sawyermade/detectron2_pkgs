@@ -38,20 +38,16 @@ pip install 'git+https://github.com/cocodataset/cocoapi.git#subdirectory=PythonA
 pip install requests jsonpickle pyrealsense2 flask
 ```
 
-### Detectron2 Conda Environment Setup GPU, doesnt always work
-```bash
-# May not work if driver and cuda version arent the same as mine: Driver 440.44 and CUDA 10.2, try from scratch below
-git clone --recurse-submodules https://github.com/sawyermade/detectron2_pkgs.git
-cd detectron2_pkgs
-conda env create -f conda_env.yaml
+## Run server
+```bash 
+# Go into cloned directory and activate conda env
+cd detectron2_pkgs/http
 conda activate detectron2
-cd detectron2
-rm -rf build
-pip install -e .
-pip install git+https://github.com/lvis-dataset/lvis-api.git
-```
 
-## Client Demo
+# Run server
+bash run_server_defaults
+```
+## Run client demo
 ```bash
 # Enter directory and activate environment
 cd detectron2_pkgs/http
