@@ -10,9 +10,11 @@ Models are saved in \~/.torch/fvcore_cache/detectron2
 git clone --recurse-submodules https://github.com/sawyermade/detectron2_pkgs.git
 cd detectron2_pkgs
 
-# Create conda environment
+# Create conda environment and activate it
 conda create -n detectron2 python=3.6
 conda activate detectron2
+
+# Install packages
 conda install pytorch torchvision cudatoolkit=10.1 -c pytorch
 pip install cython requests jsonpickle pyrealsense2 flask imageio
 pip install -U 'git+https://github.com/cocodataset/cocoapi.git#subdirectory=PythonAPI'
@@ -21,9 +23,6 @@ pip install 'git+https://github.com/lvis-dataset/lvis-api.git'
 pip install 'git+https://github.com/mcordts/cityscapesScripts.git'
 rm -rf detectron2/build
 pip install -e detectron2
-
-# If above fails, path to cc1plus may be different, search for it in /usr/lib
-export PATH=/usr/lib/gcc-snapshot/libexec/gcc/x86_64-linux-gnu/9/:$PATH
 ```
 
 ### Detectron2 HTTP Server CPU
