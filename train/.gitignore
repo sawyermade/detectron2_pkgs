@@ -6,3 +6,5 @@ run_test.sh
 lvis/*
 !lvis/download.sh
 panoptic*
+cascade*
+keypoint*
