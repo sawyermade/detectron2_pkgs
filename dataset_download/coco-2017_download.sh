@@ -26,4 +26,13 @@ for f in $FILES
 do
 	unzip $f -d $outdir && rm -f $f
 done
+
+# Moves panoptic zips and extraxts them
+FILES=$outdir/annotations/*.zip 
+for f in $FILES
+do
+	unzip $f -d $outdir && rm -f $f
+done
+
+# Remove stupid MACOSX directory
 rm -rf $outdir/__MACOSX

@@ -5,10 +5,10 @@ import flask, glob, time, jsonpickle, torch, time, pyrealsense2
 from detectron2.config import get_cfg
 from detectron2.data.detection_utils import read_image
 from detectron2.utils.logger import setup_logger
-# from predictor import VisualizationDemo
 from detectron2.data import MetadataCatalog
 from detectron2.utils.visualizer import ColorMode, Visualizer
 from detectron2.engine.defaults import DefaultPredictor
+# from predictor import VisualizationDemo
 
 def get_parser():
 	parser = argparse.ArgumentParser(description="Detectron2 demo for builtin models")
@@ -97,7 +97,6 @@ def upload_file():
 	im = cv2.imdecode(upload_list[0], cv2.IMREAD_COLOR)
 
 	# Run inference
-	# predictions, vis_output = model.run_on_image(im)
 	predictions = model(im)
 	image = cv2.cvtColor(im, cv2.COLOR_BGR2RGB)
 	visualizer = Visualizer(image, metadata, instance_mode=instance_mode)
