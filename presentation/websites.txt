@@ -2,6 +2,10 @@ Detectron2 Github: https://github.com/facebookresearch/detectron2
 
 Detectron2 Documentation: https://detectron2.readthedocs.io/
 
+Detectron2 FAIR Demo Colab: https://colab.research.google.com/drive/16jcaJoc6bCFAQ96jDe2HwtXj7BMD_-m5
+
+Detectron2 Model Zoo: https://github.com/facebookresearch/detectron2/blob/master/MODEL_ZOO.md
+
 Detectron2 FAIR Projects: https://github.com/facebookresearch/detectron2/tree/master/projects
 
 Mask R-CNN Benchmark: https://github.com/facebookresearch/maskrcnn-benchmark/
@@ -9,3 +13,5 @@ Mask R-CNN Benchmark: https://github.com/facebookresearch/maskrcnn-benchmark/
 Original Detectron: https://github.com/facebookresearch/Detectron
 
 My Detectron2 Packages: https://github.com/sawyermade/detectron2_pkgs
+
+LVIS: https://www.lvisdataset.org/
