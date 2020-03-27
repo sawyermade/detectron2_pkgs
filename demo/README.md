@@ -1,8 +1,11 @@
+# Detectron2 Demos
 
-## Detectron2 Demo
+## Webcam Demo
+```bash
+# Go into cloned directory and activate conda env
+cd detectron2_pkgs/demo
+conda activate detectron2
 
-We provide a command line tool to run a simple demo of builtin models.
-The usage is explained in [GETTING_STARTED.md](../GETTING_STARTED.md).
-
-See our [blog post](https://ai.facebook.com/blog/-detectron2-a-pytorch-based-modular-object-detection-library-)
-for a high-quality demo generated with this tool.
+# Runs webccam inference on default device 0
+bash run_demo_wc.sh
+```
