@@ -50,6 +50,14 @@ def get_parser():
 		action="store_true", 
 		help="Visualize Return Only"
 	)
+	parser.add_argument(
+		'--cam-num',
+		'-cn',
+		dest='cam_num',
+		help='Webcam Number if not 0',
+		default=0,
+		type=int
+	)
 	return parser.parse_args()
 
 # Uploads to Detectron
@@ -88,7 +96,7 @@ def main():
 
 	# Starts captures if not webcam
 	if args.webcam:
-		cap = cv2.VideoCapture(0)
+		cap = cv2.VideoCapture(args.cam_num)
 	else :
 		width, height = args.width, args.height
 		pipeline = rs.pipeline()
