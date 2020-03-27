@@ -8,3 +8,5 @@ lvis/*
 panoptic*
 cascade*
 keypoint*
+output/*
+!output/README.md
