@@ -47,3 +47,6 @@ pip install requests jsonpickle pyrealsense2 flask
 
 ### ROS Package
 [Go to ros directory](http)
+
+## Training
+[Go to train directory](train)
