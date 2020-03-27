@@ -1,7 +1,10 @@
-# Detectron2 GitHub
+# Detectron2 Packages
 FAIR Detectron2 https://github.com/facebookresearch/detectron2
 
-Models are saved in \~/.torch/fvcore_cache/detectron2
+Model Zoo Backbones are saved in \~/.torch/fvcore_cache/detectron2
+
+## HTTP Server
+[Go to http directory](http)
 
 ## Server Setup and Install
 ### Detectron2 HTTP Server GPU From Scratch
@@ -45,7 +48,7 @@ cd detectron2_pkgs/http
 conda activate detectron2
 
 # Run server
-bash run_server_defaults
+bash run_server_defaults.sh
 ```
 ## Run client demo
 ```bash

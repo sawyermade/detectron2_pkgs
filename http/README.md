@@ -11,7 +11,7 @@ git clone --recurse-submodules https://github.com/sawyermade/detectron2_pkgs.git
 cd detectron2_pkgs
 
 # Create conda environment and activate it
-conda create -n detectron2 python=3.6
+conda create -n detectron2 python=3.6 -y
 conda activate detectron2
 
 # Install packages
@@ -45,7 +45,7 @@ cd detectron2_pkgs/http
 conda activate detectron2
 
 # Run server
-bash run_server_defaults
+bash run_server_defaults.sh
 ```
 ## Run client demo
 ```bash
