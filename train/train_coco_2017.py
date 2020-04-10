@@ -24,125 +24,126 @@ DEBUG = False
 
 # Arg parser
 def argument_parser():
-    """
-    Create a parser with some common arguments used by detectron2 users.
+	"""
+	Create a parser with some common arguments used by detectron2 users.
 
-    Returns:
-        argparse.ArgumentParser:
-    """
-    parser = argparse.ArgumentParser(description="Detectron2 Training")
-    parser.add_argument(
-    	"--config-file", 
-    	'-cf',
-    	default="", 
-    	metavar="FILE", 
-    	help="path to config file",
-    )
-    parser.add_argument(
-        "--resume",
-        action="store_true",
-        help="whether to attempt to resume from the checkpoint directory",
-    )
-    parser.add_argument("--eval-only", action="store_true", help="perform evaluation only")
-    parser.add_argument("--num-gpus", type=int, default=1, help="number of gpus *per machine*")
-    parser.add_argument("--num-machines", type=int, default=1)
-    parser.add_argument(
-        "--machine-rank", type=int, default=0, help="the rank of this machine (unique per machine)"
-    )
+	Returns:
+		argparse.ArgumentParser:
+	"""
+	parser = argparse.ArgumentParser(description="Detectron2 Training")
+	parser.add_argument(
+		"--config-file", 
+		'-cf',
+		default="", 
+		metavar="FILE", 
+		help="path to config file",
+	)
+	parser.add_argument(
+		"--resume",
+		action="store_true",
+		help="whether to attempt to resume from the checkpoint directory",
+	)
+	parser.add_argument("--eval-only", action="store_true", help="perform evaluation only")
+	parser.add_argument("--num-gpus", type=int, default=1, help="number of gpus *per machine*")
+	parser.add_argument("--num-machines", type=int, default=1)
+	parser.add_argument(
+		"--machine-rank", type=int, default=0, help="the rank of this machine (unique per machine)"
+	)
 
-    # PyTorch still may leave orphan processes in multi-gpu training.
-    # Therefore we use a deterministic way to obtain port,
-    # so that users are aware of orphan processes by seeing the port occupied.
-    port = 2 ** 15 + 2 ** 14 + hash(os.getuid()) % 2 ** 14
-    parser.add_argument("--dist-url", default="tcp://127.0.0.1:{}".format(port))
-    parser.add_argument(
-        "opts",
-        help="Modify config options using the command-line",
-        default=None,
-        nargs=argparse.REMAINDER,
-    )
+	# PyTorch still may leave orphan processes in multi-gpu training.
+	# Therefore we use a deterministic way to obtain port,
+	# so that users are aware of orphan processes by seeing the port occupied.
+	port = 2 ** 15 + 2 ** 14 + hash(os.getuid()) % 2 ** 14
+	parser.add_argument("--dist-url", default="tcp://127.0.0.1:{}".format(port))
+	parser.add_argument(
+		"opts",
+		help="Modify config options using the command-line",
+		# default=None,
+		default=['SOLVER.IMS_PER_BATCH', '2', 'SOLVER.BASE_LR', '0.0025'],
+		nargs=argparse.REMAINDER,
+	)
 
-    parser.add_argument(
-    	'--dataset-name',
-    	'-dn',
-    	dest='dataset_name',
-    	help='Name of dataset',
-    	type=str,
-    	default='coco_2017'
-    )
-    parser.add_argument(
-    	'--train-gt',
-    	'-tgt',
-    	dest='train_gt',
-    	help='Path to train json',
-    	type=str,
-    	default=None
-    )
-    parser.add_argument(
-    	'--val-gt',
-    	'-vgt',
-    	dest='val_gt',
-    	help='Path to train json',
-    	type=str,
-    	default=None
-    )
-    parser.add_argument(
-    	'--train-dir',
-    	'-tdir',
-    	dest='train_dir',
-    	help='Path to train directory',
-    	type=str,
-    	default=None
-    )
-    parser.add_argument(
-    	'--val-dir',
-    	'-vdir',
-    	dest='val_dir',
-    	help='Path to val directory',
-    	type=str,
-    	default=None
-    )
-    parser.add_argument(
-        "--debug",
-        action="store_true",
-        help="Enable DEBUG",
-    )
-    parser.add_argument(
-    	'--cuda',
-    	'-cu',
-    	dest='cuda',
-    	help='CUDA card to use',
-    	type=str,
-    	default='0'
-    )
-    parser.add_argument(
-    	'--batch-size',
-    	'-bs',
-    	dest='batch_size',
-    	help='Batch size',
-    	type=int,
-    	default=16
-    )
-    parser.add_argument(
-    	'--learning-rate',
-    	'-lr',
-    	dest='learning_rate',
-    	help='Learning Rate',
-    	type=float,
-    	default=0.0001
-    )
-    return parser.parse_args()
+	parser.add_argument(
+		'--dataset-name',
+		'-dn',
+		dest='dataset_name',
+		help='Name of dataset',
+		type=str,
+		default='coco_2017'
+	)
+	parser.add_argument(
+		'--train-gt',
+		'-tgt',
+		dest='train_gt',
+		help='Path to train json',
+		type=str,
+		default=None
+	)
+	parser.add_argument(
+		'--val-gt',
+		'-vgt',
+		dest='val_gt',
+		help='Path to train json',
+		type=str,
+		default=None
+	)
+	parser.add_argument(
+		'--train-dir',
+		'-tdir',
+		dest='train_dir',
+		help='Path to train directory',
+		type=str,
+		default=None
+	)
+	parser.add_argument(
+		'--val-dir',
+		'-vdir',
+		dest='val_dir',
+		help='Path to val directory',
+		type=str,
+		default=None
+	)
+	parser.add_argument(
+		"--debug",
+		action="store_true",
+		help="Enable DEBUG",
+	)
+	parser.add_argument(
+		'--cuda',
+		'-cu',
+		dest='cuda',
+		help='CUDA card to use',
+		type=str,
+		default='0'
+	)
+	parser.add_argument(
+		'--batch-size',
+		'-bs',
+		dest='batch_size',
+		help='Batch size',
+		type=int,
+		default=16
+	)
+	parser.add_argument(
+		'--learning-rate',
+		'-lr',
+		dest='learning_rate',
+		help='Learning Rate',
+		type=float,
+		default=0.0001
+	)
+	return parser.parse_args()
 
 # Random sample check
 def random_meta_check(dataset_dicts, dataset_metadata, name='Test'):
 	for d in random.sample(dataset_dicts, 3):
-	    img = cv2.imread(d["file_name"])
-	    visualizer = Visualizer(img[:, :, ::-1], metadata=dataset_metadata, scale=0.5)
-	    vis = visualizer.draw_dataset_dict(d)
-	    cv2.imshow(name, vis.get_image()[:, :, ::-1])
-	    k = cv2.waitKey(0)
-	    if k == 27:
-	    	cv2.DestroyAllWindows()
+		img = cv2.imread(d["file_name"])
+		visualizer = Visualizer(img[:, :, ::-1], metadata=dataset_metadata, scale=0.5)
+		vis = visualizer.draw_dataset_dict(d)
+		cv2.imshow(name, vis.get_image()[:, :, ::-1])
+		k = cv2.waitKey(0)
+		if k == 27:
+			cv2.DestroyAllWindows()
 
 # Config setup
 def setup(args):
@@ -151,7 +152,7 @@ def setup(args):
 	"""
 	out_dir = args.config_file.split(os.sep)[-1].rsplit('.', 1)[0]
 	cfg = get_cfg()
-	cfg.OUTPUT_DIR = f'./{out_dir}'
+	cfg.OUTPUT_DIR = f'./output/{out_dir}'
 	cfg.merge_from_file(args.config_file)
 	cfg.merge_from_list(args.opts)
 	# cfg.SOLVER.IMS_PER_BATCH = args.batch_size
@@ -256,9 +257,9 @@ def main(args):
 	trainer = Trainer(cfg)
 	trainer.resume_or_load(resume=args.resume)
 	if cfg.TEST.AUG.ENABLED:
-	    trainer.register_hooks(
-	        [hooks.EvalHook(0, lambda: trainer.test_with_TTA(cfg, trainer.model))]
-	    )
+		trainer.register_hooks(
+			[hooks.EvalHook(0, lambda: trainer.test_with_TTA(cfg, trainer.model))]
+		)
 	return trainer.train()
 
 
@@ -266,6 +267,8 @@ if __name__ == '__main__':
 	# Get args
 	args = argument_parser()
 	print("Command Line Args:", args)
+
+	print(f'args.opts = {args.opts}')
 
 	# Set DEBUG
 	DEBUG = args.debug
