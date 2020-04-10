@@ -18,12 +18,12 @@ def sub_divide_dir(dir_path, max_files=5000):
 		# Create new sub directory
 		if i % (max_files-1) == 0:
 			out_sub = os.path.join(out_dir, str(count))
-			# os.system(f'mkdir -p {out_sub}')
+			os.system(f'mkdir -p {out_sub}')
 			count += 1
 
 		# Gets file path and copies to sub directory
 		file_path = os.path.join(dir_path, filename)
-		# os.system(f'cp {file_path} {out_sub}')
+		os.system(f'cp {file_path} {out_sub}')
 
 	return True
 
