@@ -3,8 +3,11 @@ FAIR Detectron2 https://github.com/facebookresearch/detectron2
 
 Model Zoo Backbone/Pretrained are saved in \~/.torch/fvcore_cache/detectron2
 
-## Colab Notebook
-[COCO 2017 Training](https://colab.research.google.com/drive/1OVStblo4Q3rz49Pe9-CJcUGkkCDLcMqP)
+## Colab Notebooks
+[COCO 2017 Training](colab)
+
+## COCO 2017 Colab Download/Setup
+[COCO Download Setup](dataset_download)
 
 ## Setup and Install
 ### Detectron2 GPU
