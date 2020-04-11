@@ -19,7 +19,7 @@ python3 sub_divide_training.py ./coco && rm -rf ./coco/train2017 ./coco/test2017
 curl https://rclone.org/install.sh | sudo bash
 ```
 
-#### Link rclone with google drive, figure it out yourself
+#### Link rclone with google drive, figure it out yourself I believe in you :)
 https://rclone.org/drive/
 
 #### Upload to Google Drive
