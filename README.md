@@ -7,7 +7,7 @@ Model Zoo Backbone/Pretrained are saved in \~/.torch/fvcore_cache/detectron2
 [COCO 2017 Training](colab/Detectron2_Train_COCO_2017.ipynb)
 
 ## COCO 2017 Colab Download/Setup
-[COCO Download Setup](dataset_download)
+[COCO Download & Setup](dataset_download)
 
 ## Setup and Install
 ### Detectron2 GPU
