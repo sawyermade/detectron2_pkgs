@@ -33,5 +33,5 @@ rclone copy ./coco remote-name:coco/ -vv
 ```
 Now wait a while :)
 
-### Check Colab Notebook on training Detectron2 on COCO 2017
+### Colab Notebook on Training Detectron2 with COCO 2017
 https://colab.research.google.com/drive/1OVStblo4Q3rz49Pe9-CJcUGkkCDLcMqP
