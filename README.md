@@ -4,7 +4,7 @@ FAIR Detectron2 https://github.com/facebookresearch/detectron2
 Model Zoo Backbone/Pretrained are saved in \~/.torch/fvcore_cache/detectron2
 
 ## Colab Notebooks
-[COCO 2017 Training](colab)
+[COCO 2017 Training](colab/Detectron2_Train_COCO_2017.ipynb)
 
 ## COCO 2017 Colab Download/Setup
 [COCO Download Setup](dataset_download)
