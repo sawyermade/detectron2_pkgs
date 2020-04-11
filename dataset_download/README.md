@@ -6,7 +6,7 @@
 bash coco-2017_download.sh ./coco
 ```
 
-## Colab Only
+## Colab Setup Only
 ### COCO Sub Directory Split for Colab
 ```bash
 # Since in the above COCO 2017 Download we chose ./coco
