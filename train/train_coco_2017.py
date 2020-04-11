@@ -23,7 +23,7 @@ from detectron2.utils.visualizer import Visualizer
 DEBUG = False
 
 # Arg parser
-def argument_parser():
+def argument_parser(arg_list=None):
 	"""
 	Create a parser with some common arguments used by detectron2 users.
 
@@ -132,7 +132,11 @@ def argument_parser():
 		type=float,
 		default=0.0001
 	)
-	return parser.parse_args()
+
+	if arg_list:
+		return parser.parse_args(args=arg_list)
+	else:
+		return parser.parse_args()
 
 # Random sample check
 def random_meta_check(dataset_dicts, dataset_metadata, name='Test'):
@@ -152,13 +156,10 @@ def setup(args):
 	"""
 	out_dir = args.config_file.split(os.sep)[-1].rsplit('.', 1)[0]
 	cfg = get_cfg()
-	cfg.OUTPUT_DIR = f'./output/{out_dir}'
+	cfg.OUTPUT_DIR = os.path.join('./output', out_dir)
 	cfg.merge_from_file(args.config_file)
 	cfg.merge_from_list(args.opts)
-	# cfg.SOLVER.IMS_PER_BATCH = args.batch_size
-	# cfg.SOLVER.BASE_LR = args.learning_rate
 	cfg.freeze()
-	# print(f'cfg.DATASETS: {cfg.DATASETS}')
 	default_setup(cfg, args)
 	return cfg
 

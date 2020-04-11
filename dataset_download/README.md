@@ -10,7 +10,10 @@ bash coco-2017_download.sh ./coco
 ### COCO Sub Directory Split for Colab
 ```bash
 # Since in the above COCO 2017 Download we chose ./coco
-python3 sub_divide_training.py ./coco && rm -rf ./coco/train2017 ./coco/test2017
+python3 sub_divide_training.py ./coco 
+
+# Remove old train and test so you dont have to upload them too
+rm -rf ./coco/train2017 ./coco/test2017
 ```
 
 ### Upload to Google Drive
