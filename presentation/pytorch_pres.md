@@ -59,3 +59,28 @@ y = x.new_ones(7, 7)
 
 y.dtype
 ```
+
+### _like method postfix:
+This keeps the size but lets you change other features like dtype.
+```python
+x = torch.ones(4, 6)
+
+y = torch.zeros_like(x, dtype=torch.int)
+
+y.size()
+
+y.dtype
+```
+
+### torch.size() method, similar to np.shape
+```python
+x = torch.zeros(4, 6)
+
+# Prints [4, 6]
+x.size()
+
+# Prints 4
+x.size()[0]
+```
+
+
