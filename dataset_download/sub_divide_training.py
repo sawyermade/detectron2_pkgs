@@ -12,7 +12,7 @@ def sub_divide_dir(dir_path, max_files=5000):
 		return False
 
 	# Sub divides so no directory has more than max_files
-	out_dir = dir_path + '_sub'
+	out_dir = dir_path + f'_sub-{max_files}'
 	count = 0
 	for i, filename in enumerate(tqdm(file_list)):
 		# Create new sub directory

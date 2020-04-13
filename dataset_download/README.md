@@ -30,6 +30,7 @@ First, make a directory on your Google Drive in 'My Drive' root named coco
 ```bash
 # Copy to remote, remote-name is the name of the remote you created during setup
 rclone copy ./coco remote-name:coco/ -vv
+rclone copy val2017_sub-500 gdrive-usf:DATASETS/COCO/2017/val2017_sub-500 -vv --drive-chunk-size=256M --transfers=40 --checkers=40 --tpslimit=9 --fast-list --max-backlog 200000
 ```
 Now wait a while :)
 
