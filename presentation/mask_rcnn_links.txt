@@ -1,0 +1,10 @@
+Mask RCNN Links:
+Paper = https://arxiv.org/abs/1703.06870
+
+Goog Medium Art = https://medium.com/@jonathan_hui/image-segmentation-with-mask-r-cnn-ebe6d793272
+
+ResNet Paper = https://arxiv.org/abs/1512.03385
+
+ResNet Art = https://towardsdatascience.com/an-overview-of-resnet-and-its-variants-5281e2f56035
+
+Faster R-CNN: https://arxiv.org/abs/1506.01497
