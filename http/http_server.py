@@ -1,5 +1,6 @@
 import os, sys, cv2, numpy as np, argparse, multiprocessing as mp 
 import flask, glob, time, jsonpickle, torch, time, pyrealsense2
+from flask_ngrok import run_with_ngrok
 
 # Detectron2 imports
 from detectron2.config import get_cfg
@@ -57,6 +58,13 @@ def get_parser():
 		default='665',
 		type=str
 	)
+	parser.add_argument(
+		"--ngrok", 
+		'-ng',
+		dest='ngrok',
+		action="store_true", 
+		help="Uses Ngrok."
+	)
 	return parser.parse_args()
 
 # Config setup
@@ -78,6 +86,7 @@ args = get_parser()
 DOMAIN = args.ip
 PORT = args.port
 app = flask.Flask(__name__)
+if args.ngrok: run_with_ngrok(app)
 model = None
 metadata = None
 cpu_device = torch.device('cpu')
@@ -174,7 +183,10 @@ def main():
     )
 
 	# Run http app
-	app.run(port=PORT, host=DOMAIN, debug=False)
+	if args.ngrok:
+		app.run()
+	else:
+		app.run(port=PORT, host=DOMAIN, debug=False)
 
 if __name__ == '__main__':
 	main()
