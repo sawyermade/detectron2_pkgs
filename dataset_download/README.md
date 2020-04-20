@@ -26,7 +26,7 @@ curl https://rclone.org/install.sh | sudo bash
 https://rclone.org/drive/
 
 #### Upload to Google Drive
-First, make a directory on your Google Drive in 'My Drive' root named coco
+First, make a directory on your Google Drive in 'My Drive' root named COCO
 ```bash
 # Copy to remote, remote-name is the name of the remote you created during setup
 rclone copy ./coco remote-name:COCO/ -vv
