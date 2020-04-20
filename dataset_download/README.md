@@ -35,5 +35,8 @@ rclone copy ./coco remote-name:COCO/ -vv
 ```
 Now wait a while :)
 
+### My subdivided COCO for Colab Google Drive Share
+https://drive.google.com/drive/folders/1EVsLBRwT2njNWOrmBAhDHvvB8qrd9pXT?usp=sharing
+
 ### Colab Notebook on Training Detectron2 with COCO 2017
 https://colab.research.google.com/drive/1OVStblo4Q3rz49Pe9-CJcUGkkCDLcMqP
