@@ -1,4 +1,4 @@
-# Detectron2 Quick n' Dirty HTTP Server 
+# Detectron2 Quick N' Dirty HTTP Server 
 ## Run server
 ```bash 
 # Go into cloned directory and activate conda env
