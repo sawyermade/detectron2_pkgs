@@ -38,7 +38,7 @@ def main():
 	if len(sys.argv) > 2:
 		max_files = int(sys.argv[2])
 	else:
-		max_files = 5000
+		max_files = 1000
 
 	# Run on train, test, val 2017s
 	sub_divide_dir(train_path, max_files)
