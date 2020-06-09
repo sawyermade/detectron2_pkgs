@@ -25,8 +25,8 @@ conda activate detectron2
 
 # Install packages
 conda install pytorch torchvision cudatoolkit=10.1 opencv -c pytorch -y
-pip install cython requests jsonpickle pyrealsense2 flask imageio shapely flask-ngrok
-pip install -U 'git+https://github.com/cocodataset/cocoapi.git#subdirectory=PythonAPI'
+pip install -U cython requests jsonpickle pyrealsense2 flask imageio shapely flask-ngrok 'git+https://github.com/cocodataset/cocoapi.git#subdirectory=PythonAPI'
+#pip install -U 'git+https://github.com/cocodataset/cocoapi.git#subdirectory=PythonAPI'
 pip install -U 'git+https://github.com/cocodataset/panopticapi.git'
 pip install -U 'git+https://github.com/lvis-dataset/lvis-api.git'
 pip install -U 'git+https://github.com/mcordts/cityscapesScripts.git'
