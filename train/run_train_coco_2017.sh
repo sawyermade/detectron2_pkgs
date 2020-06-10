@@ -11,10 +11,16 @@ then
 	temp_config="$2"
 fi
 
+temp_bs=2
+if [ -n "$3" ]
+then
+	temp_bs=$3
+fi
+
 #echo "cuda: $temp_cuda"
 #echo "config: $temp_config"
 
 python3 train_coco_2017.py \
         -cf $temp_config \
         -cu $temp_cuda \
-        SOLVER.IMS_PER_BATCH 2 SOLVER.BASE_LR 0.0025
+        SOLVER.IMS_PER_BATCH $temp_bs SOLVER.BASE_LR 0.0025
