@@ -1,5 +1,5 @@
 # Detectron2 Packages
-FAIR Detectron2 https://github.com/facebookresearch/detectron2
+FAIR Detectron2 https://github.com/facebookresearch/detectron2 woop woop
 
 Model Zoo Backbone/Pretrained are saved in \~/.torch/fvcore_cache/detectron2
 
